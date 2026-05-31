@@ -1,4 +1,4 @@
-from reflex.base import Base as RxBase
+from pydantic import BaseModel as RxBase
 import reflex as rx
 import httpx
 from typing import List
