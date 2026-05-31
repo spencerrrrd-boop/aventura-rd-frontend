@@ -4,7 +4,6 @@ async-timeout==5.0.1
 -e git+https://github.com/spencerrrrd-boop/aventura-rd-frontend@8bd9db5533b615b69ca37575b0b8a06adfba7e12#egg=aventura_rd_frontend
 bidict==0.23.1
 certifi==2026.5.20
-click==8.4.1
 colorama==0.4.6
 granian==2.7.5
 h11==0.14.0
