@@ -3,7 +3,7 @@ from aventura_rd_frontend.components.navbar import navbar
 from aventura_rd_frontend.components.footer import footer
 from aventura_rd_frontend.state.ofertas_state import OfertasState
 
-BACKEND_URL = "http://localhost:8000"
+BACKEND_URL = "https://aventura-rd-api.onrender.com"
 
 class ReservaState(rx.State):
     nombre: str = ""

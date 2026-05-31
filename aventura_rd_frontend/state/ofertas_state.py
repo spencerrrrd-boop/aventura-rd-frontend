@@ -2,7 +2,7 @@ import reflex as rx
 import httpx
 from typing import List
 
-BACKEND_URL = "http://192.168.0.100:8000"
+BACKEND_URL = "https://aventura-rd-api.onrender.com"
 
 class Oferta(rx.Base):
     id: int = 0
