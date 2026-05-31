@@ -1,10 +1,11 @@
+from reflex.base import Base as RxBase
 import reflex as rx
 import httpx
 from typing import List
 
 BACKEND_URL = "https://aventura-rd-api.onrender.com"
 
-class Oferta(rx.base.Base):
+class Oferta(RxBase):
     id: int = 0
     titulo: str = ""
     descripcion: str = ""
@@ -18,7 +19,7 @@ class Oferta(rx.base.Base):
     categoria_id: int = 0
     categoria: dict = {}
 
-class Categoria(rx.base.Base):
+class Categoria(RxBase):
     id: int = 0
     nombre: str = ""
     descripcion: str = ""
