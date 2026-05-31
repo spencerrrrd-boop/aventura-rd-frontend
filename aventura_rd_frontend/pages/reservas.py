@@ -17,7 +17,13 @@ class ReservaState(rx.State):
     enviando: bool = False
     exito: bool = False
     error: str = ""
-
+    def set_nombre(self, v): self.nombre = v
+    def set_apellido(self, v): self.apellido = v
+    def set_email(self, v): self.email = v
+    def set_telefono(self, v): self.telefono = v
+    def set_fecha_reserva(self, v): self.fecha_reserva = v
+    def set_num_personas(self, v): self.num_personas = v
+    def set_notas(self, v): self.notas = v
     @rx.event
     async def enviar_reserva(self):
         import httpx
@@ -236,7 +242,7 @@ def reservas_page() -> rx.Component:
                                     rx.input(
                                         type="number",
                                         placeholder="1",
-                                        value=ReservaState.num_personas,
+                                        value=ReservaState.num_personas.to_string(),
                                         on_change=ReservaState.set_num_personas,
                                         min="1",
                                         max="20",
@@ -435,7 +441,7 @@ def reservas_page() -> rx.Component:
                                 rx.text("Precio por persona", font_size="14px", color="#666"),
                                 rx.spacer(),
                                 rx.text(
-                                    f"RD$ {OfertasState.oferta_actual.precio:,.0f}",
+                                    f"RD$ {OfertasState.oferta_actual.precio}",
                                     font_size="14px",
                                     font_weight="600",
                                     color="#27500A",
@@ -446,7 +452,7 @@ def reservas_page() -> rx.Component:
                                 rx.text("Personas", font_size="14px", color="#666"),
                                 rx.spacer(),
                                 rx.text(
-                                    ReservaState.num_personas,
+                                    ReservaState.num_personas.to_string(),
                                     font_size="14px",
                                     font_weight="600",
                                     color="#27500A",

@@ -12,6 +12,9 @@ class AuthState(rx.State):
     cargando: bool = False
     error: str = ""
 
+    def set_email(self, v): self.email = v
+    def set_password(self, v): self.password = v
+
     @rx.var
     def is_authenticated(self) -> bool:
         return self.token != ""
