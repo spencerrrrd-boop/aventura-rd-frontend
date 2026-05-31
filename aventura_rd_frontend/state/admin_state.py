@@ -5,14 +5,14 @@ from aventura_rd_frontend.state.auth_state import AuthState
 
 BACKEND_URL = "https://aventura-rd-api.onrender.com"
 
-class DashboardStats(rx.Base):
+class DashboardStats(rx.base.Base):
     total_ofertas_activas: int = 0
     total_reservas: int = 0
     reservas_pendientes: int = 0
     reservas_confirmadas: int = 0
     total_ingresos: float = 0.0
 
-class ReservaAdmin(rx.Base):
+class ReservaAdmin(rx.base.Base):
     id: int = 0
     nombre_cliente: str = ""
     apellido_cliente: str = ""

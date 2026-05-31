@@ -4,7 +4,7 @@ from typing import List
 
 BACKEND_URL = "https://aventura-rd-api.onrender.com"
 
-class Oferta(rx.Base):
+class Oferta(rx.base.Base):
     id: int = 0
     titulo: str = ""
     descripcion: str = ""
@@ -18,7 +18,7 @@ class Oferta(rx.Base):
     categoria_id: int = 0
     categoria: dict = {}
 
-class Categoria(rx.Base):
+class Categoria(rx.base.Base):
     id: int = 0
     nombre: str = ""
     descripcion: str = ""
