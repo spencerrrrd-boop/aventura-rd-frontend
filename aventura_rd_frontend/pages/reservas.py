@@ -24,6 +24,7 @@ class ReservaState(rx.State):
     def set_fecha_reserva(self, v): self.fecha_reserva = v
     def set_num_personas(self, v): self.num_personas = v
     def set_notas(self, v): self.notas = v
+    def set_metodo_pago(self, v): self.metodo_pago = v
     @rx.event
     async def enviar_reserva(self):
         import httpx
