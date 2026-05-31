@@ -3,7 +3,7 @@ import httpx
 from typing import List
 from aventura_rd_frontend.state.auth_state import AuthState
 
-BACKEND_URL = "http://192.168.0.100:8000"
+BACKEND_URL = "https://aventura-rd-api.onrender.com"
 
 class DashboardStats(rx.Base):
     total_ofertas_activas: int = 0

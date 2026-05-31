@@ -1,7 +1,7 @@
 import reflex as rx
 import httpx
 
-BACKEND_URL = "http://192.168.0.100:8000"
+BACKEND_URL = "https://aventura-rd-api.onrender.com"
 
 class AuthState(rx.State):
     token: str = ""
