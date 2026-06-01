@@ -149,8 +149,8 @@ def reserva_row(reserva) -> rx.Component:
 
 def admin_dashboard_page() -> rx.Component:
     return rx.box(
-        # Sidebar
         rx.hstack(
+            # Sidebar
             rx.box(
                 rx.vstack(
                     # Logo
@@ -194,7 +194,7 @@ def admin_dashboard_page() -> rx.Component:
                                 width="100%",
                                 _hover={"background": "rgba(255,255,255,0.05)", "border_radius": "8px"},
                             ),
-                            href="/admin/dashboard",
+                            href="#reservas",
                         ),
                         rx.link(
                             rx.hstack(
@@ -206,7 +206,7 @@ def admin_dashboard_page() -> rx.Component:
                                 width="100%",
                                 _hover={"background": "rgba(255,255,255,0.05)", "border_radius": "8px"},
                             ),
-                            href="/admin/dashboard",
+                            href="/",
                         ),
                         spacing="1",
                         width="100%",
@@ -379,6 +379,7 @@ def admin_dashboard_page() -> rx.Component:
                                 ),
                             ),
                         ),
+                        id="reservas",
                         background="white",
                         border_radius="12px",
                         padding="24px",
