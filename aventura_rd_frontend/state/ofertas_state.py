@@ -33,6 +33,8 @@ class OfertasState(rx.State):
     error: str = ""
     busqueda: str = ""
 
+    def set_busqueda(self, v): self.busqueda = v
+
     @rx.event
     async def cargar_ofertas(self):
         self.cargando = True
@@ -56,7 +58,6 @@ class OfertasState(rx.State):
             self.error = f"Error de conexión: {str(e)}"
         finally:
             self.cargando = False
-        def set_busqueda(self, v): self.busqueda = v
 
     @rx.event
     async def buscar_ofertas(self):
@@ -121,6 +122,7 @@ class OfertasState(rx.State):
     async def cargar_oferta_desde_url(self):
         oferta_id = self.router.page.params.get("oferta_id", "1")
         await self.cargar_oferta(int(oferta_id))
+
     @rx.event
     def limpiar_oferta(self):
         self.oferta_actual = Oferta()
