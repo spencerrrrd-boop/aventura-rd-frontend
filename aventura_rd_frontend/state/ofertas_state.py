@@ -31,6 +31,7 @@ class OfertasState(rx.State):
     categoria_seleccionada: int = 0
     cargando: bool = False
     error: str = ""
+    busqueda: str = ""
 
     @rx.event
     async def cargar_ofertas(self):
@@ -41,6 +42,33 @@ class OfertasState(rx.State):
                 params = {}
                 if self.categoria_seleccionada > 0:
                     params["categoria_id"] = self.categoria_seleccionada
+                response = await client.get(
+                    f"{BACKEND_URL}/ofertas/",
+                    params=params,
+                    timeout=10.0
+                )
+                if response.status_code == 200:
+                    data = response.json()
+                    self.ofertas = [Oferta(**o) for o in data]
+                else:
+                    self.error = "Error al cargar las ofertas"
+        except Exception as e:
+            self.error = f"Error de conexión: {str(e)}"
+        finally:
+            self.cargando = False
+        def set_busqueda(self, v): self.busqueda = v
+
+    @rx.event
+    async def buscar_ofertas(self):
+        self.cargando = True
+        self.error = ""
+        try:
+            async with httpx.AsyncClient() as client:
+                params = {}
+                if self.categoria_seleccionada > 0:
+                    params["categoria_id"] = self.categoria_seleccionada
+                if self.busqueda:
+                    params["destino"] = self.busqueda
                 response = await client.get(
                     f"{BACKEND_URL}/ofertas/",
                     params=params,
@@ -93,6 +121,10 @@ class OfertasState(rx.State):
     async def cargar_oferta_desde_url(self):
         oferta_id = self.router.page.params.get("oferta_id", "1")
         await self.cargar_oferta(int(oferta_id))
+    @rx.event
+    def limpiar_oferta(self):
+        self.oferta_actual = Oferta()
+        self.error = ""
 
     @rx.event
     def filtrar_categoria(self, categoria_id: int):
