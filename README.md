@@ -79,4 +79,4 @@ https://github.com/TU_USUARIO/aventura-rd-backend
 
 ## 👥 Créditos
 
-Desarrollado por [Tu nombre] — Proyecto Final Desarrollo Web
+Desarrollado por spencer perez, elison roa. — Proyecto Final Desarrollo Web
