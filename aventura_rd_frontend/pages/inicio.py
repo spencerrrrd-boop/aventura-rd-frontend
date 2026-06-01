@@ -163,12 +163,13 @@ def oferta_card(oferta: Oferta) -> rx.Component:
         rx.link(
             rx.vstack(
                 rx.box(
-                    rx.image(
-                        src=oferta.imagen_url,
-                        width="100%",
-                        height="200px",
-                        object_fit="cover",
-                    ),
+                   rx.image(
+    src=oferta.imagen_url,
+    width="100%",
+    height="200px",
+    object_fit="cover",
+    style={"display": "block", "min_width": "100%", "min_height": "200px"},
+),
                     rx.box(
                         rx.text(
                             oferta.categoria["nombre"],

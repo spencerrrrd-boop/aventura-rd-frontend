@@ -318,7 +318,6 @@ def descripcion_page() -> rx.Component:
         footer(),
         spacing="0",
         width="100%",
-        on_mount=OfertasState.cargar_oferta(
-            rx.State.router.page.params["oferta_id"]
+       on_mount=OfertasState.cargar_oferta_desde_url,
         ),
     )

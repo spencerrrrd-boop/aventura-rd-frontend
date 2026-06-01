@@ -90,6 +90,11 @@ class OfertasState(rx.State):
             self.cargando = False
 
     @rx.event
+    async def cargar_oferta_desde_url(self):
+        oferta_id = self.router.page.params.get("oferta_id", "1")
+        await self.cargar_oferta(int(oferta_id))
+
+    @rx.event
     def filtrar_categoria(self, categoria_id: int):
         self.categoria_seleccionada = categoria_id
         return OfertasState.cargar_ofertas
