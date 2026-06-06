@@ -1,6 +1,6 @@
 import reflex as rx
-from pydantic import BaseModel
 import httpx
+from pydantic import BaseModel
 from typing import List
 
 BACKEND_URL = "https://aventura-rd-api.onrender.com"
@@ -30,10 +30,19 @@ class AdminState(rx.State):
     cargando: bool = False
     error: str = ""
     token: str = ""
+    seccion_activa: str = "reservas"
 
     @rx.event
     def set_token(self, token: str):
         self.token = token
+
+    @rx.event
+    def ver_reservas(self):
+        self.seccion_activa = "reservas"
+
+    @rx.event
+    def ver_ofertas(self):
+        self.seccion_activa = "ofertas"
 
     @rx.event
     async def cargar_dashboard(self):

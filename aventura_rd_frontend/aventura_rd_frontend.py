@@ -4,6 +4,7 @@ from aventura_rd_frontend.pages.descripcion import descripcion_page
 from aventura_rd_frontend.pages.reservas import reservas_page
 from aventura_rd_frontend.pages.admin_login import admin_login_page
 from aventura_rd_frontend.pages.admin_dashboard import admin_dashboard_page
+from aventura_rd_frontend.pages.admin_ofertas import admin_ofertas_page
 
 app = rx.App(
     theme=rx.theme(
@@ -17,3 +18,4 @@ app.add_page(descripcion_page, route="/descripcion/[oferta_id]")
 app.add_page(reservas_page, route="/reservas/[oferta_id]")
 app.add_page(admin_login_page, route="/admin/login")
 app.add_page(admin_dashboard_page, route="/admin/dashboard")
+app.add_page(admin_ofertas_page, route="/admin/ofertas")
