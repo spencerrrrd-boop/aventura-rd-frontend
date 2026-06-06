@@ -26,6 +26,7 @@ class AuthState(rx.State):
 
     @rx.event
     async def login(self):
+        from aventura_rd_frontend.state.admin_state import AdminState
         self.cargando = True
         self.error = ""
         try:
