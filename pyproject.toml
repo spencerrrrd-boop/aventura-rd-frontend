@@ -7,7 +7,7 @@ authors = [
 ]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = "^3.11"
+requires-python = "^3.10"
 dependencies = [
     "reflex (==0.9.3)",
     "pydantic (==2.0.3)",

@@ -300,25 +300,25 @@ def admin_dashboard_page() -> rx.Component:
                     rx.grid(
                         stat_card(
                             "Ofertas activas",
-                            AdminState.stats.total_ofertas_activas.to_string(),
+                            AdminState.total_ofertas_activas.to_string(),
                             "#27500A",
                             "mountain",
                         ),
                         stat_card(
                             "Total reservas",
-                            AdminState.stats.total_reservas.to_string(),
+                            AdminState.total_reservas.to_string(),
                             "#1D9E75",
                             "ticket",
                         ),
                         stat_card(
                             "Reservas pendientes",
-                            AdminState.stats.reservas_pendientes.to_string(),
+                            AdminState.reservas_pendientes.to_string(),
                             "#BA7517",
                             "clock",
                         ),
                         stat_card(
                             "Confirmadas",
-                            AdminState.stats.reservas_confirmadas.to_string(),
+                            AdminState.reservas_confirmadas.to_string(),
                             "#639922",
                             "circle-check",
                         ),
@@ -336,7 +336,7 @@ def admin_dashboard_page() -> rx.Component:
                             ),
                             rx.spacer(),
                             rx.text(
-                                f"Total: {AdminState.stats.total_reservas}",
+                                f"Total: {AdminState.total_reservas}",
                                 font_size="13px",
                                 color="#888",
                             ),

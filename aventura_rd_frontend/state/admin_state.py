@@ -1,17 +1,11 @@
 import reflex as rx
+from pydantic import BaseModel
 import httpx
 from typing import List
 
 BACKEND_URL = "https://aventura-rd-api.onrender.com"
 
-class DashboardStats(rx.Base):
-    total_ofertas_activas: int = 0
-    total_reservas: int = 0
-    reservas_pendientes: int = 0
-    reservas_confirmadas: int = 0
-    total_ingresos: float = 0.0
-
-class ReservaAdmin(rx.Base):
+class ReservaAdmin(BaseModel):
     id: int = 0
     nombre_cliente: str = ""
     apellido_cliente: str = ""
@@ -19,7 +13,7 @@ class ReservaAdmin(rx.Base):
     telefono: str = ""
     oferta_id: int = 0
     fecha_reserva: str = ""
-    num_personas: str = "1"
+    num_personas: int = 1
     total_pago: float = 0.0
     metodo_pago: str = ""
     estado: str = ""
@@ -27,7 +21,11 @@ class ReservaAdmin(rx.Base):
     created_at: str = ""
 
 class AdminState(rx.State):
-    stats: DashboardStats = DashboardStats()
+    total_ofertas_activas: int = 0
+    total_reservas: int = 0
+    reservas_pendientes: int = 0
+    reservas_confirmadas: int = 0
+    total_ingresos: float = 0.0
     reservas: List[ReservaAdmin] = []
     cargando: bool = False
     error: str = ""
@@ -49,7 +47,11 @@ class AdminState(rx.State):
                 )
                 if response.status_code == 200:
                     data = response.json()
-                    self.stats = DashboardStats(**data)
+                    self.total_ofertas_activas = data["total_ofertas_activas"]
+                    self.total_reservas = data["total_reservas"]
+                    self.reservas_pendientes = data["reservas_pendientes"]
+                    self.reservas_confirmadas = data["reservas_confirmadas"]
+                    self.total_ingresos = data["total_ingresos"]
                 else:
                     self.error = "Error al cargar el dashboard"
         except Exception as e:
