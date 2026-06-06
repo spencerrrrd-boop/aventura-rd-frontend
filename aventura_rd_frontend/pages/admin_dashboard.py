@@ -52,8 +52,8 @@ def reserva_row(reserva) -> rx.Component:
                 spacing="1", align="end",
             ),
             rx.vstack(
-                rx.button("✓ Confirmar", on_click=AdminState.cambiar_estado_reserva(reserva.id, "confirmada"), background="#E1F5EE", color="#0F6E56", border_radius="6px", padding="4px 10px", font_size="11px", cursor="pointer", _hover={"background": "#0F6E56", "color": "white"}),
-                rx.button("✕ Cancelar", on_click=AdminState.cambiar_estado_reserva(reserva.id, "cancelada"), background="#FFEBEE", color="#C62828", border_radius="6px", padding="4px 10px", font_size="11px", cursor="pointer", _hover={"background": "#C62828", "color": "white"}),
+                rx.button("Confirmar", on_click=AdminState.cambiar_estado_reserva(reserva.id, "confirmada"), background="#E1F5EE", color="#0F6E56", border_radius="6px", padding="4px 10px", font_size="11px", cursor="pointer", _hover={"background": "#0F6E56", "color": "white"}),
+                rx.button("Cancelar", on_click=AdminState.cambiar_estado_reserva(reserva.id, "cancelada"), background="#FFEBEE", color="#C62828", border_radius="6px", padding="4px 10px", font_size="11px", cursor="pointer", _hover={"background": "#C62828", "color": "white"}),
                 spacing="1",
             ),
             spacing="4", align="center", width="100%",
@@ -79,7 +79,7 @@ def oferta_row_dashboard(oferta) -> rx.Component:
                 color=rx.cond(oferta.activa, "#0F6E56", "#C62828"),
                 border_radius="20px", padding="4px 10px",
             ),
-            rx.button("✕ Desactivar", on_click=OfertasAdminState.desactivar_oferta(oferta.id), background="#FFEBEE", color="#C62828", border_radius="6px", padding="4px 10px", font_size="11px", cursor="pointer", _hover={"background": "#C62828", "color": "white"}),
+            rx.button("Desactivar", on_click=OfertasAdminState.desactivar_oferta(oferta.id), background="#FFEBEE", color="#C62828", border_radius="6px", padding="4px 10px", font_size="11px", cursor="pointer", _hover={"background": "#C62828", "color": "white"}),
             spacing="4", align="center", width="100%",
         ),
         background="white", border_radius="10px", padding="16px", border="0.5px solid #E8F5E0", width="100%",
@@ -94,21 +94,21 @@ def modal_nueva_oferta() -> rx.Component:
                     rx.hstack(
                         rx.heading("Nueva Oferta", size="5", color="#27500A"),
                         rx.spacer(),
-                        rx.button("✕", on_click=OfertasAdminState.toggle_modal, background="transparent", color="#888", cursor="pointer", font_size="18px"),
+                        rx.button("X", on_click=OfertasAdminState.toggle_modal, background="transparent", color="#888", cursor="pointer", font_size="18px"),
                         width="100%", align="center",
                     ),
                     rx.divider(border_color="#E8F5E0"),
                     rx.grid(
-                        rx.vstack(rx.text("Título *", font_size="13px", color="#555", font_weight="500"), rx.input(placeholder="Nombre de la aventura", value=OfertasAdminState.nuevo_titulo, on_change=OfertasAdminState.set_nuevo_titulo, border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%"), spacing="1", width="100%"),
+                        rx.vstack(rx.text("Titulo *", font_size="13px", color="#555", font_weight="500"), rx.input(placeholder="Nombre de la aventura", value=OfertasAdminState.nuevo_titulo, on_change=OfertasAdminState.set_nuevo_titulo, border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%"), spacing="1", width="100%"),
                         rx.vstack(rx.text("Destino *", font_size="13px", color="#555", font_weight="500"), rx.input(placeholder="Ej: Jarabacoa, La Vega", value=OfertasAdminState.nuevo_destino, on_change=OfertasAdminState.set_nuevo_destino, border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%"), spacing="1", width="100%"),
                         rx.vstack(rx.text("Precio (RD$) *", font_size="13px", color="#555", font_weight="500"), rx.input(placeholder="0.00", value=OfertasAdminState.nuevo_precio, on_change=OfertasAdminState.set_nuevo_precio, type="number", border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%"), spacing="1", width="100%"),
-                        rx.vstack(rx.text("Duración (días) *", font_size="13px", color="#555", font_weight="500"), rx.input(placeholder="1", value=OfertasAdminState.nuevo_duracion, on_change=OfertasAdminState.set_nuevo_duracion, type="number", border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%"), spacing="1", width="100%"),
+                        rx.vstack(rx.text("Duracion (dias) *", font_size="13px", color="#555", font_weight="500"), rx.input(placeholder="1", value=OfertasAdminState.nuevo_duracion, on_change=OfertasAdminState.set_nuevo_duracion, type="number", border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%"), spacing="1", width="100%"),
                         rx.vstack(rx.text("Cupos *", font_size="13px", color="#555", font_weight="500"), rx.input(placeholder="10", value=OfertasAdminState.nuevo_cupos, on_change=OfertasAdminState.set_nuevo_cupos, type="number", border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%"), spacing="1", width="100%"),
-                        rx.vstack(rx.text("Categoría ID *", font_size="13px", color="#555", font_weight="500"), rx.input(placeholder="1=Senderismo 2=Rafting 3=Zipline 4=Escalada 5=Camping 6=Ciclismo", value=OfertasAdminState.nuevo_categoria_id, on_change=OfertasAdminState.set_nuevo_categoria_id, type="number", border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%"), spacing="1", width="100%"),
+                        rx.vstack(rx.text("Categoria ID *", font_size="13px", color="#555", font_weight="500"), rx.input(placeholder="1=Senderismo 2=Rafting 3=Zipline 4=Escalada 5=Camping 6=Ciclismo", value=OfertasAdminState.nuevo_categoria_id, on_change=OfertasAdminState.set_nuevo_categoria_id, type="number", border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%"), spacing="1", width="100%"),
                         columns="2", spacing="4", width="100%",
                     ),
-                    rx.vstack(rx.text("Descripción *", font_size="13px", color="#555", font_weight="500"), rx.text_area(placeholder="Descripción de la aventura...", value=OfertasAdminState.nuevo_descripcion, on_change=OfertasAdminState.set_nuevo_descripcion, border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%", rows="3"), spacing="1", width="100%"),
-                    rx.vstack(rx.text("Itinerario", font_size="13px", color="#555", font_weight="500"), rx.text_area(placeholder="Día 1: ...", value=OfertasAdminState.nuevo_itinerario, on_change=OfertasAdminState.set_nuevo_itinerario, border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%", rows="3"), spacing="1", width="100%"),
+                    rx.vstack(rx.text("Descripcion *", font_size="13px", color="#555", font_weight="500"), rx.text_area(placeholder="Descripcion de la aventura...", value=OfertasAdminState.nuevo_descripcion, on_change=OfertasAdminState.set_nuevo_descripcion, border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%", rows="3"), spacing="1", width="100%"),
+                    rx.vstack(rx.text("Itinerario", font_size="13px", color="#555", font_weight="500"), rx.text_area(placeholder="Dia 1: ...", value=OfertasAdminState.nuevo_itinerario, on_change=OfertasAdminState.set_nuevo_itinerario, border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%", rows="3"), spacing="1", width="100%"),
                     rx.vstack(rx.text("URL de imagen", font_size="13px", color="#555", font_weight="500"), rx.input(placeholder="https://images.unsplash.com/...", value=OfertasAdminState.nuevo_imagen_url, on_change=OfertasAdminState.set_nuevo_imagen_url, border="1.5px solid #ddd", border_radius="8px", padding="10px 14px", width="100%"), spacing="1", width="100%"),
                     rx.cond(OfertasAdminState.error != "", rx.text(OfertasAdminState.error, color="red", font_size="13px")),
                     rx.hstack(
@@ -138,7 +138,7 @@ def seccion_reservas() -> rx.Component:
             rx.vstack(rx.spinner(size="3", color="#27500A"), rx.text("Cargando reservas...", color="#888"), spacing="3", align="center", padding="40px"),
             rx.cond(
                 AdminState.reservas.length() == 0,
-                rx.box(rx.vstack(rx.icon("inbox", size=40, color="#ddd"), rx.text("No hay reservas aún", color="#888", font_size="14px"), spacing="3", align="center"), padding="40px", text_align="center", width="100%"),
+                rx.box(rx.vstack(rx.icon("inbox", size=40, color="#ddd"), rx.text("No hay reservas aun", color="#888", font_size="14px"), spacing="3", align="center"), padding="40px", text_align="center", width="100%"),
                 rx.vstack(rx.foreach(AdminState.reservas, reserva_row), spacing="3", width="100%"),
             ),
         ),
@@ -148,7 +148,7 @@ def seccion_reservas() -> rx.Component:
 def seccion_ofertas() -> rx.Component:
     return rx.vstack(
         rx.hstack(
-            rx.heading("Gestión de Ofertas", size="5", color="#27500A"),
+            rx.heading("Gestion de Ofertas", size="5", color="#27500A"),
             rx.spacer(),
             rx.button(
                 rx.hstack(rx.icon("plus", size=16, color="white"), rx.text("Nueva oferta", color="white", font_size="14px"), spacing="2", align="center"),
@@ -211,7 +211,7 @@ def admin_dashboard_page() -> rx.Component:
                         spacing="0", align="start", width="100%",
                     ),
                     rx.button(
-                        rx.hstack(rx.icon("log-out", size=14, color="#9FCC6B"), rx.text("Cerrar sesión", font_size="13px", color="#9FCC6B"), spacing="2", align="center"),
+                        rx.hstack(rx.icon("log-out", size=14, color="#9FCC6B"), rx.text("Cerrar sesion", font_size="13px", color="#9FCC6B"), spacing="2", align="center"),
                         on_click=AuthState.logout, background="transparent", border="1px solid #27500A", border_radius="8px", padding="8px 12px", width="100%", cursor="pointer",
                     ),
                     spacing="4", align="start", height="100vh", padding="24px 16px", width="220px",
@@ -227,7 +227,7 @@ def admin_dashboard_page() -> rx.Component:
                             spacing="0", align="start",
                         ),
                         rx.spacer(),
-                        rx.link(rx.button("Ver sitio →", background="#27500A", color="white", border_radius="8px", padding="8px 16px", font_size="13px", _hover={"background": "#639922"}), href="/"),
+                        rx.link(rx.button("Ver sitio", background="#27500A", color="white", border_radius="8px", padding="8px 16px", font_size="13px", _hover={"background": "#639922"}), href="/"),
                         width="100%", align="center",
                     ),
                     rx.divider(border_color="#E8F5E0"),
