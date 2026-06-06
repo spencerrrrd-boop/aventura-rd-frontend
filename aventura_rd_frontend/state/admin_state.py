@@ -1,19 +1,17 @@
-from pydantic import BaseModel as RxBase
 import reflex as rx
 import httpx
 from typing import List
-from aventura_rd_frontend.state.auth_state import AuthState
 
 BACKEND_URL = "https://aventura-rd-api.onrender.com"
 
-class DashboardStats(RxBase):
+class DashboardStats(rx.Base):
     total_ofertas_activas: int = 0
     total_reservas: int = 0
     reservas_pendientes: int = 0
     reservas_confirmadas: int = 0
     total_ingresos: float = 0.0
 
-class ReservaAdmin(RxBase):
+class ReservaAdmin(rx.Base):
     id: int = 0
     nombre_cliente: str = ""
     apellido_cliente: str = ""
@@ -33,18 +31,20 @@ class AdminState(rx.State):
     reservas: List[ReservaAdmin] = []
     cargando: bool = False
     error: str = ""
-    reserva_seleccionada_id: int = 0
-    nuevo_estado: str = "confirmada"
+    token: str = ""
+
+    @rx.event
+    def set_token(self, token: str):
+        self.token = token
 
     @rx.event
     async def cargar_dashboard(self):
         self.cargando = True
-        token = await self.get_state(AuthState)
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.get(
                     f"{BACKEND_URL}/admin/dashboard",
-                    headers={"Authorization": f"Bearer {token.token}"},
+                    headers={"Authorization": f"Bearer {self.token}"},
                     timeout=10.0
                 )
                 if response.status_code == 200:
@@ -60,17 +60,17 @@ class AdminState(rx.State):
     @rx.event
     async def cargar_reservas(self):
         self.cargando = True
-        token = await self.get_state(AuthState)
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.get(
                     f"{BACKEND_URL}/admin/reservas",
-                    headers={"Authorization": f"Bearer {token.token}"},
+                    headers={"Authorization": f"Bearer {self.token}"},
                     timeout=10.0
                 )
                 if response.status_code == 200:
                     data = response.json()
                     self.reservas = [ReservaAdmin(**r) for r in data]
+                    self.error = ""
                 else:
                     self.error = "Error al cargar reservas"
         except Exception as e:
@@ -80,13 +80,12 @@ class AdminState(rx.State):
 
     @rx.event
     async def cambiar_estado_reserva(self, reserva_id: int, estado: str):
-        token = await self.get_state(AuthState)
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.patch(
                     f"{BACKEND_URL}/admin/reservas/{reserva_id}/estado",
                     json={"estado": estado},
-                    headers={"Authorization": f"Bearer {token.token}"},
+                    headers={"Authorization": f"Bearer {self.token}"},
                     timeout=10.0
                 )
                 if response.status_code == 200:

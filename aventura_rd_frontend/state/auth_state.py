@@ -12,9 +12,6 @@ class AuthState(rx.State):
     cargando: bool = False
     error: str = ""
 
-    def set_email(self, v): self.email = v
-    def set_password(self, v): self.password = v
-
     @rx.var
     def is_authenticated(self) -> bool:
         return self.token != ""
@@ -38,7 +35,10 @@ class AuthState(rx.State):
                     self.token = data["access_token"]
                     self.admin_nombre = data["admin"]["nombre"]
                     self.admin_email = data["admin"]["email"]
-                    return rx.redirect("/admin/dashboard")
+                    yield AdminState.set_token(self.token)
+                    yield AdminState.cargar_dashboard
+                    yield AdminState.cargar_reservas
+                    yield rx.redirect("/admin/dashboard")
                 else:
                     self.error = "Email o contraseña incorrectos"
         except Exception as e:
